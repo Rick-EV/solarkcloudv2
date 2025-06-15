@@ -60,7 +60,6 @@ def GetInverterInfo(Token,Serial):
             print("Inverter HardVer: " + ConsoleColor.OKCYAN + str(parsed_inverter_json['data']['version']['hardVer']) + ConsoleColor.ENDC)
             print("Inverter HmiVer: " + ConsoleColor.OKCYAN + str(parsed_inverter_json['data']['version']['hmiVer']) + ConsoleColor.ENDC)
             print("Inverter BmsVer: " + ConsoleColor.OKCYAN + str(parsed_inverter_json['data']['version']['bmsVer']) + ConsoleColor.ENDC)
-            print("Inverter CommVer: " + ConsoleColor.OKCYAN + str(parsed_inverter_json['data']['version']['commVer']) + ConsoleColor.ENDC)
             print("Inverter Id: " + ConsoleColor.OKCYAN + str(parsed_inverter_json['data']['plant']['id']) + ConsoleColor.ENDC)
             print("Inverter Name: " + ConsoleColor.OKCYAN + str(parsed_inverter_json['data']['plant']['name']) + ConsoleColor.ENDC)
             print("Inverter Type: " + ConsoleColor.OKCYAN + str(parsed_inverter_json['data']['plant']['type']) + ConsoleColor.ENDC)
