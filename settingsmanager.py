@@ -7,7 +7,7 @@ import postapi
 ## 2.  Start the process to get settings from HA set by user
 ## 3a. Build Battery settings template and merge existing server settings into the template *This is just prep, settings from user not yet populated" 
 ## 3b. Build System mode settings template and merge existing server settings into the template *This is just prep, settings from user not yet populated" 
-## 4.  Fetch user settings from HA Entity --> /api/states/input_text.solarsynkv3 and iterate through each user provided setting.
+## 4.  Fetch user settings from HA Entity --> /api/states/input_text.solarkv2_ and iterate through each user provided setting.
 ## 5.  Check each setting provided by user and determine in which category the setting is from and pass both the setting and value I.E Battery, System mode
 ## 6.  Open the previously merged setting file and then populate the setting if found in the settings category.
 #################################################################################################################################################
@@ -92,7 +92,7 @@ def GetNewSettingsFromHAEntity(SolarkToken,Serial):
             httpurl_proto = "http"
 
         headers = {"Content-Type": "application/json","Authorization": f"Bearer {HaToken}"}  
-        url = f"{httpurl_proto}://" + str(json_settings['Home_Assistant_IP']) + ":" + str(json_settings['Home_Assistant_PORT']) + "/api/states/input_text.solarsynkv3_" + Serial + '_settings'
+        url = f"{httpurl_proto}://" + str(json_settings['Home_Assistant_IP']) + ":" + str(json_settings['Home_Assistant_PORT']) + "/api/states/input_text.solarkv2_" + Serial + '_settings'
         print("Get automation settings: " + ConsoleColor.WARNING + url + ConsoleColor.ENDC)
         #print(str(url))
         #print(str(headers))
@@ -111,7 +111,7 @@ def GetNewSettingsFromHAEntity(SolarkToken,Serial):
         #print(str(parsed_inverter_json['state']))
         
         EntSettings = str(parsed_inverter_json['state']).split(";")        
-        #print("The following settings were found in: " + ConsoleColor.OKCYAN  +  "solarsynkv3_" + Serial + "_settings" + ConsoleColor.ENDC)                
+        #print("The following settings were found in: " + ConsoleColor.OKCYAN  +  "solarkv3_" + Serial + "_settings" + ConsoleColor.ENDC)                
         LoopCount=0 
         LastSettingsType=""
         for EntSetting in EntSettings: 
@@ -140,7 +140,7 @@ def GetNewSettingsFromHAEntity(SolarkToken,Serial):
 
     except requests.exceptions.RequestException as e:
         print(ConsoleColor.FAIL + f"Error: Failed to connect to Home Assistant API. {e}" + ConsoleColor.ENDC)
-        print(f"You probably did not create the settings entity. Manually create it for inverter with serial " + ConsoleColor.OKCYAN + Serial + ConsoleColor.ENDC + " In the HA GUI in menu [Settings] -> [Devices & Services] -> [Helpers] tab -> [+ CREATE HELPER]. Choose [Text] and name it: " + ConsoleColor.OKCYAN  +  "solarsynkv3_" + Serial + "_settings" + ConsoleColor.ENDC)
+        print(f"You probably did not create the settings entity. Manually create it for inverter with serial " + ConsoleColor.OKCYAN + Serial + ConsoleColor.ENDC + " In the HA GUI in menu [Settings] -> [Devices & Services] -> [Helpers] tab -> [+ CREATE HELPER]. Choose [Text] and name it: " + ConsoleColor.OKCYAN  +  "solarkv2_" + Serial + "_settings" + ConsoleColor.ENDC)
 
     except json.JSONDecodeError:
         print(ConsoleColor.MAGENTA + "Notice: Invalid or no settings found to post back to SolArk. This is not a critical error, it just means that the settings you provided in the settings entity (/api/states/input_text.solarkv2_" + Serial + "_settings) is invalid or blank. If this is intentional just ignore." + ConsoleColor.ENDC)                
@@ -270,7 +270,7 @@ def ResetSettingsEntity(Serial):
         else:
             httpurl_proto = "http"     
     
-    url = f"{httpurl_proto}://" + str(json_settings['Home_Assistant_IP']) + ":" + str(json_settings['Home_Assistant_PORT']) + "/api/states/input_text.solarsynkv3_" + Serial + '_settings'
+    url = f"{httpurl_proto}://" + str(json_settings['Home_Assistant_IP']) + ":" + str(json_settings['Home_Assistant_PORT']) + "/api/states/input_text.solarkv2_" + Serial + '_settings'
     headers = {"Content-Type": "application/json","Authorization": f"Bearer {HAToken}"}    
     payload = {"attributes": {"unit_of_measurement": ""}, "state": ""}
     
