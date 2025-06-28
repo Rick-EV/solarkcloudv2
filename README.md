@@ -2,7 +2,7 @@
 
 Integrate your MySolArk account with Home Assistant for solar energy monitoring. Track power generation, battery storage, and grid usage while enabling smart automations and custom alerts. Optimize energy efficiency, reduce costs, and stay in control with seamless remote access and intuitive dashboards.
 
-![](https://github.com/martinville/solarsynkv3/blob/main/scriptstarted.png)
+![](https://github.com/Rick-EV/solarkcloudv2/blob/main/scriptstarted.png)
 
 ## List of example entities
 
