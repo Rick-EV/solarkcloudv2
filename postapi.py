@@ -99,7 +99,7 @@ def ConnectionTest(Serial,UOM,UOMLong,fName,sName,EntityVal):
             
         #print(json_settings['Enable_HTTPS'])
         # API URL
-        url = f"{httpurl_proto}://" + str(json_settings['Home_Assistant_IP']) + ":" + str(json_settings['Home_Assistant_PORT']) + "/api/states/sensor.solarsynkv3_" + Serial + '_' + sName
+        url = f"{httpurl_proto}://" + str(json_settings['Home_Assistant_IP']) + ":" + str(json_settings['Home_Assistant_PORT']) + "/api/states/sensor.solarkcloudv2_" + Serial + '_' + sName
         
         #print ("HAToken:" + HAToken)
         #payload = {"attributes": {"unit_of_measurement": f"{UOM}", "friendly_name": f"{fName}"}, "state": f"{EntityVal}"}        
